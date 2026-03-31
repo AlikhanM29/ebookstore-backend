@@ -1,15 +1,15 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // 1. useNavigate импортталды
+import { useNavigate } from 'react-router-dom';
 
 const HeroSection = () => {
-  const navigate = useNavigate(); // 2. Навигация функциясы анықталды
+  const navigate = useNavigate();
 
   return (
     <>
       <style>
         {`
-          /* POPPINS ШРИФТІН ЖҮКТЕУ */
-          @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+          /* MONTSERRAT ЖӘНЕ POPPINS ШРИФТТЕРІН ЖҮКТЕУ */
+          @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@400;500;600&display=swap');
           
           @keyframes float {
             0% { transform: translateY(0px); }
@@ -17,29 +17,32 @@ const HeroSection = () => {
             100% { transform: translateY(0px); }
           }
 
-          /* БҮКІЛ ЭЛЕМЕНТКЕ ШРИФТТІ МІНДЕТТІ ТҮРДЕ ОРНАТУ */
+          /* БҮКІЛ ЭЛЕМЕНТКЕ НЕГІЗГІ ШРИФТТІ ОРНАТУ */
           * {
             font-family: 'Poppins', sans-serif !important;
+          }
+
+          /* ТЕК БАСТЫ ТАҚЫРЫПҚА (HERO) MONTSERRAT ОРНАТУ */
+          .main-hero-title {
+            font-family: 'Montserrat', sans-serif !important;
           }
         `}
       </style>
 
       <div style={heroContainer}>
-        {/* ФОТО ФОН РЕТІНДЕ ПЛАВНО ӨШЕДІ */}
         <div style={heroPhotoBg}></div>
 
         <div style={mainLayout}>
-          {/* СОЛ ЖАҚ: НЕГІЗГІ МӘТІН */}
           <div style={contentBox}>
             <span style={badge}>№1 Кітап Дүкені</span>
-            <h1 style={mainTitle}>
+            {/* ШРИФТ ОСЫ ЖЕРДЕГІ CLASSNAME АРҚЫЛЫ ӨЗГЕРДІ */}
+            <h1 style={mainTitle} className="main-hero-title">
               Әлемдегі ең таңдаулы <br /> 
               <span style={highlightText}>Топ-кітаптар жинағы</span>
             </h1>
             <p style={description}>
               Біздің дүкенде ғана сіз ең сирек кездесетін, сапалы және мазмұнды кітаптарды таба аласыз. 
             </p>
-            {/* 3. onClick ІШІНЕ NAVIGATE ФУНКЦИЯСЫ ҚОЙЫЛДЫ */}
             <button 
               style={ctaButton} 
               onClick={() => navigate('/home')}
@@ -48,25 +51,21 @@ const HeroSection = () => {
             </button>
           </div>
 
-          {/* ОҢ ЖАҚ: СТАТИСТИКА КАРТОЧКАЛАРЫ */}
           <div style={cardsGrid}>
-            {/* 1-ші КАРТОЧКА: ОҚЫРМАНДАР */}
             <div style={{...statCard, animationDelay: '0s'}}>
-              <div style={iconBox}>👥</div>
+              <div style={iconBox}></div>
               <span style={statNumber}>10k+</span>
               <span style={statLabel}>Белсенді Оқырмандар</span>
             </div>
 
-            {/* 2-ші КАРТОЧКА: ТОП КІТАПТАР */}
             <div style={{...statCard, background: '#38BDF8', color: '#0F172A', animationDelay: '0.2s'}}>
-              <div style={iconBox}>📚</div>
+              <div style={iconBox}></div>
               <span style={statNumber}>500+</span>
               <span style={statLabel}>Тандаулы Кітаптар</span>
             </div>
 
-            {/* 3-ші КАРТОЧКА: ҚОЛДАУ КӨРСЕТУ */}
             <div style={{...statCard, gridColumn: 'span 2', flexDirection: 'row', justifyContent: 'center', gap: '20px', animationDelay: '0.4s'}}>
-              <div style={iconBox}>⚡</div>
+              <div style={iconBox}></div>
               <div style={{textAlign: 'left'}}>
                 <span style={statNumber}>24/7</span>
                 <span style={statLabel}>Жедел Қолдау Көрсету Орталығы</span>
@@ -79,9 +78,8 @@ const HeroSection = () => {
   );
 };
 
-// СТИЛЬДЕР
+// СТИЛЬДЕР (ӨЗГЕРІССІЗ ҚАЛДЫ)
 const heroContainer = {
-  fontFamily: "'Poppins', sans-serif",
   minHeight: '90vh',
   background: '#0F172A',
   display: 'flex',
@@ -147,7 +145,6 @@ const description = {
 };
 
 const ctaButton = {
-  fontFamily: "'Poppins', sans-serif",
   padding: '18px 45px',
   fontSize: '18px',
   background: 'white',

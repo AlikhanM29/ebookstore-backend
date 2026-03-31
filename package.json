@@ -27,8 +27,9 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "vite",
-    "dev": "vite"
-  },
+    "dev": "vite",
+    "build": "vite build" 
+},
   "keywords": [],
   "author": "",
   "license": "ISC"
