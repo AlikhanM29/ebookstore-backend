@@ -11,7 +11,7 @@ const Home = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/books?search=${search}&genre=${genre}&sort=${sort}`);
+        const res = await axios.get(`https://ebookstore-backend-eubu.onrender.com/api/books?search=${search}&genre=${genre}&sort=${sort}`);
         setBooks(res.data);
       } catch (err) {
         console.error("Кітаптарды жүктеу қатесі:", err);

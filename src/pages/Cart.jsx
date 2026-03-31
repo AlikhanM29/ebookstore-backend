@@ -99,7 +99,7 @@ const Cart = () => {
     };
 
     try {
-      const response = await axios.post('http://localhost:5000/api/orders', orderData);
+      const response = await axios.post('https://ebookstore-backend-eubu.onrender.com/api/orders', orderData);
       if (response.status === 200 || response.status === 201) {
         alert("Тапсырыс сәтті қабылданды! ✅");
         localStorage.removeItem('cart');

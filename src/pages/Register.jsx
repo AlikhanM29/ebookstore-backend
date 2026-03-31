@@ -27,7 +27,7 @@ const Register = () => {
     try {
       console.log("Жіберіліп жатқан мәліметтер:", formData);
       
-      const response = await axios.post('http://localhost:5000/api/register', formData);
+      const response = await axios.post('https://ebookstore-backend-eubu.onrender.com/api/register', formData);
 
       if (response.status === 201 || response.status === 200) {
         alert("Тіркелу сәтті өтті! ✅");

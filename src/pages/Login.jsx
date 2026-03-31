@@ -10,7 +10,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/login', { email, password });
+      const res = await axios.post('https://ebookstore-backend-eubu.onrender.com/api/login', { email, password });
       
       if (res.data) {
         // Мәліметтерді localStorage-ке сақтаймыз

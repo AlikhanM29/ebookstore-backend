@@ -29,7 +29,7 @@ const Admin = () => {
 
   const fetchBooks = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/books');
+      const res = await axios.get('https://ebookstore-backend-eubu.onrender.com/api/books');
       setBooks(res.data);
     } catch (err) {
       console.error("Тізімді алу қатесі:", err);
@@ -39,7 +39,7 @@ const Admin = () => {
   const deleteBook = async (id) => {
     if (window.confirm("Бұл кітапты өшіруге сенімдісіз бе?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/books/${id}`);
+        await axios.delete(`https://ebookstore-backend-eubu.onrender.com/api/books/${id}`);
         alert("Кітап өшірілді! 🗑️");
         fetchBooks();
       } catch (err) {
@@ -57,7 +57,7 @@ const Admin = () => {
       stock: parseInt(f.stock) // Санды бүтін санға айналдыру
     };
 
-    axios.post('http://localhost:5000/api/books', bookData)
+    axios.post('https://ebookstore-backend-eubu.onrender.com/api/books', bookData)
       .then(() => {
         alert("Кітап базаға сәтті қосылды! ✅");
         // ФОРМАНЫ ТАЗАЛАУ (stock-ты қоса)

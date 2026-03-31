@@ -8,7 +8,7 @@ const BookDetails = () => {
   const [book, setBook] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/books/${id}`)
+    axios.get(`https://ebookstore-backend-eubu.onrender.com/api/books/${id}`)
       .then(res => setBook(res.data))
       .catch(err => console.log("Қате:", err));
   }, [id]);

@@ -9,7 +9,7 @@ export default defineConfig({
     cors: true, // CORS-ты рұқсат ету
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'https://ebookstore-backend-eubu.onrender.com',
         changeOrigin: true,
         secure: false,
       }

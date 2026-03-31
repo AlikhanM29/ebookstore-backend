@@ -27,7 +27,7 @@ const Profile = () => {
     if (!userId) return;
     try {
       // URL-ді бэкендтегі /api/my-orders/ жолына сәйкестендірдік
-      const res = await axios.get(`http://localhost:5000/api/my-orders/${userId}`);
+      const res = await axios.get(`https://ebookstore-backend-eubu.onrender.com/api/my-orders/${userId}`);
       if (Array.isArray(res.data)) {
         setOrders(res.data);
       }
@@ -43,7 +43,7 @@ const Profile = () => {
     try {
       // 1. Бэкендке (базаға) сақтау үшін сұраныс жібереміз
       const token = localStorage.getItem('token'); // Егер токен қолдансаң
-      const res = await axios.put(`http://localhost:5000/api/user/update/${user.id}`, {
+      const res = await axios.put(`https://ebookstore-backend-eubu.onrender.com/api/user/update/${user.id}`, {
         username: newName
       }, {
         headers: { Authorization: `Bearer ${token}` }
