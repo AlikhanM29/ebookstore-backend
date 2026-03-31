@@ -1,0 +1,541 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+
+:root {
+  --primary: #00d2ff;           /* Ашық көк акцент */
+  --primary-hover: #00a8e8;
+  --bg-gradient: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  --card-bg: rgba(255, 255, 255, 0.08); /* Шыны эффектісі */
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --text-main: #ffffff;
+  --text-muted: #cbd5e1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Ортақ Контейнер (Login/Register үшін) */
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Шыны Карточка стилі */
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 40px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+/* Инпуттар */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+input {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  color: #1e293b;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(0, 210, 255, 0.2);
+}
+
+/* Батырмалар */
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary);
+  color: #0f2027;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-submit:hover {
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 210, 255, 0.4);
+}
+
+.home-container {
+  min-height: 100vh;
+}
+
+/* Navbar стилі */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  background: rgba(15, 32, 39, 0.8);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--glass-border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  color: white;
+}
+
+.logo span {
+  color: var(--primary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* Кітаптар торы (Grid) */
+.content {
+  padding: 40px 5%;
+}
+
+.section-title {
+  margin-bottom: 30px;
+  font-size: 28px;
+  border-left: 5px solid var(--primary);
+  padding-left: 15px;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+/* Карточка дизайны */
+.book-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.book-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.card-image {
+  position: relative;
+  height: 300px;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.price-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--primary);
+  color: #0f2027;
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.card-info {
+  padding: 20px;
+}
+
+.card-info h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.author {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.genre-label {
+  display: inline-block;
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 3px 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.btn-view {
+  display: block;
+  text-align: center;
+  background: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  text-decoration: none;
+  padding: 8px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-view:hover {
+  background: var(--primary);
+  color: #0f2027;
+}
+
+/* Landing Page негізгі контейнері */
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hero Бөлімі */
+.hero-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  z-index: 1;
+}
+
+.landing-logo {
+  font-size: 4.5rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: white;
+  letter-spacing: -2px;
+}
+
+.landing-logo span {
+  color: var(--primary);
+}
+
+.landing-description {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  max-width: 700px;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+
+/* Басты батырма */
+.btn-main-cyan {
+  background: var(--primary);
+  color: #0f2027;
+  padding: 18px 50px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 1.1rem;
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0, 210, 255, 0.4);
+}
+
+.btn-main-cyan:hover {
+  background: white;
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 15px 40px rgba(0, 210, 255, 0.6);
+}
+
+/* Footer стилі */
+.landing-footer {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  padding: 40px 20px;
+  border-top: 1px solid var(--glass-border);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.contact-info p span {
+  margin-right: 8px;
+}
+
+.divider {
+  height: 1px;
+  background: var(--glass-border);
+  margin: 20px auto;
+  width: 100px;
+}
+
+.copyright {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* Фондағы декоративті шар */
+.glass-blob {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0, 210, 255, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  top: 10%;
+  right: -100px;
+  z-index: -1;
+  animation: pulse 8s infinite alternate;
+}
+
+@keyframes pulse {
+  from { transform: scale(1); opacity: 0.5; }
+  to { transform: scale(1.2); opacity: 0.8; }
+}
+
+/* Планшет пен телефонға арналған бейімделу */
+@media (max-width: 768px) {
+  .landing-logo { font-size: 3rem; }
+  .contact-info { flex-direction: column; gap: 10px; }
+}
+
+/* Login/Register үшін ортақ стильдер */
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  padding: 40px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.auth-title {
+  color: white;
+  font-size: 28px;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.auth-title span {
+  color: #00d2ff; /* Ашық көк акцент */
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  color: #1e293b;
+  outline: none;
+  transition: 0.3s;
+}
+
+.auth-input:focus {
+  box-shadow: 0 0 0 4px rgba(0, 210, 255, 0.3);
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  background: #00d2ff;
+  color: #0f2027;
+  border: none;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+.btn-submit:hover {
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 210, 255, 0.4);
+}
+
+.auth-footer {
+  margin-top: 25px;
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+.auth-link {
+  color: #00d2ff;
+  text-decoration: none;
+  font-weight: 700;
+  margin-left: 5px;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+/* Іздеу бөлімі */
+.search-section {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px 20px 20px;
+}
+
+.main-search-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px; /* Іздеудің ұзындығы */
+}
+
+.main-search-input {
+  width: 100%;
+  padding: 18px 25px;
+  padding-right: 60px;
+  border-radius: 50px; /* Дөңгелек стиль */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 18px;
+  color: #1e293b;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: 0.3s;
+}
+
+.main-search-input:focus {
+  box-shadow: 0 10px 30px rgba(0, 210, 255, 0.3);
+  transform: scale(1.01);
+}
+
+.search-icon {
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 22px;
+  opacity: 0.5;
+}
+
+/* Сүзгілер бөлімі (Сол жақта) */
+.filter-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 30px 20px;
+}
+
+.filter-container {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start; /* Сол жаққа тіреу */
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filter-group label {
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  margin-left: 5px;
+  opacity: 0.8;
+}
+
+.filter-select {
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  min-width: 180px;
+}
+
+.filter-select option {
+  background: #0f2027;
+  color: white;
+}
+
+.filter-select:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Кітаптар торы */
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
