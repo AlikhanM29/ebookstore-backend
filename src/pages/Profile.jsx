@@ -145,7 +145,7 @@ function authenticateToken(req, res, next) {
 
       {/* ОҢ ЖАҚ: ТАРИХ */}
       <div style={mainContent}>
-        <h3 style={historyTitle}>Сатып алу тарихы 📖</h3>
+        <h3 style={historyTitle}>Сатып алу тарихы </h3>
         <div style={historyList}>
           {orders.length === 0 ? (
             <div style={emptyState}>

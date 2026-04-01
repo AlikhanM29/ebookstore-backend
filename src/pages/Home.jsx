@@ -93,29 +93,53 @@ const Home = () => {
 
         <main style={contentStyle}>
           {loading ? (
-            /* ЖҮКТЕЛУДЕ ДЕГЕН ЖАЗУ МЕН АНИМАЦИЯ ОСЫ ЖЕРДЕ */
             <div style={loadingContainer}>
               <div className="spinner"></div>
               <p style={loadingText}>Жүктелуде...</p>
             </div>
           ) : (
             <div style={bookGrid}>
-              {books.map((book) => (
-                <div key={book.id} style={bookCard}>
-                  <div style={imageWrapper}>
-                    <img src={book.image_url} alt={book.title} style={bookImage} />
-                    <div style={priceTag}>{book.price} ₸</div>
-                  </div>
-                  <div style={infoWrapper}>
-                    <h3 style={bookTitle}>{book.title}</h3>
-                    <p style={authorText}>{book.author} • {book.year}</p>
-                    <div style={{ margin: '8px 0' }}>
-                      <span style={genreBadgeStyle}>{book.genre}</span>
+              {books.map((book) => {
+                // КІТАПТЫҢ БАР-ЖОҒЫН ТЕКСЕРУ (МЫСАЛЫ: stock бағаны 0 болса)
+                const isOutOfStock = book.stock === 0;
+
+                return (
+                  <div 
+                    key={book.id} 
+                    style={{
+                      ...bookCard, 
+                      border: isOutOfStock ? '2px solid #EF4444' : 'none', // Таусылса қызыл жиек
+                      opacity: isOutOfStock ? 0.8 : 1 // Сәл солғындату
+                    }}
+                  >
+                    <div style={imageWrapper}>
+                      <img src={book.image_url} alt={book.title} style={bookImage} />
+                      <div style={{
+                        ...priceTag, 
+                        background: isOutOfStock ? '#64748B' : '#2563EB' // Таусылса сұр түс
+                      }}>
+                        {isOutOfStock ? 'Таусылды' : `${book.price} ₸`}
+                      </div>
                     </div>
-                    <Link to={`/book/${book.id}`} style={btnDetail}>Көру</Link>
+                    <div style={infoWrapper}>
+                      <h3 style={bookTitle}>{book.title}</h3>
+                      <p style={authorText}>{book.author} • {book.year}</p>
+                      <div style={{ margin: '8px 0' }}>
+                        <span style={genreBadgeStyle}>{book.genre}</span>
+                      </div>
+                      
+                      {/* БАТЫРМА ТАУСЫЛҒАНДА БАСЫЛМАЙТЫН БОЛАДЫ */}
+                      {isOutOfStock ? (
+                        <div style={{...btnDetail, background: '#E2E8F0', color: '#94A3B8', cursor: 'not-allowed'}}>
+                          Қолжетімсіз
+                        </div>
+                      ) : (
+                        <Link to={`/book/${book.id}`} style={btnDetail}>Көру</Link>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </main>
@@ -124,7 +148,7 @@ const Home = () => {
   );
 };
 
-// --- СТИЛЬДЕР ---
+// --- СТИЛЬДЕР (Өзгеріссіз қалды) ---
 const mainLayout = { display: 'flex', background: '#F8FAFC', minHeight: '100vh' };
 const sidebarStyle = { width: '320px', background: 'linear-gradient(180deg, #1E3A8A 0%, #1E40AF 100%)', padding: '40px 24px', position: 'sticky', top: 0, height: '100vh', color: 'white' };
 const sidebarTitleStyle = { fontSize: '24px', fontWeight: '800', marginBottom: '35px', letterSpacing: '-0.5px' };
@@ -154,24 +178,8 @@ const bookTitle = { fontSize: '15px', fontWeight: 'bold', margin: '0 0 4px' };
 const authorText = { fontSize: '13px', color: '#64748B' };
 const btnDetail = { display: 'block', textAlign: 'center', marginTop: '12px', padding: '10px', background: '#F1F5F9', borderRadius: '8px', textDecoration: 'none', color: '#1E40AF', fontWeight: '600' };
 
-// ЖҮКТЕЛУ КОНТЕЙНЕРІНЕ FLEX-DIRECTION ҚОСЫЛДЫ
-const loadingContainer = { 
-  display: 'flex', 
-  flexDirection: 'column', 
-  alignItems: 'center', 
-  justifyContent: 'center', 
-  padding: '100px',
-  gap: '20px' 
-};
-
-// ЖҮКТЕЛУ МӘТІНІНІҢ СТИЛІ
-const loadingText = {
-  fontSize: '18px',
-  fontWeight: '600',
-  color: '#2563EB',
-  letterSpacing: '1px'
-};
-
+const loadingContainer = { display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '100px', gap: '20px' };
+const loadingText = { fontSize: '18px', fontWeight: '600', color: '#2563EB', letterSpacing: '1px' };
 const genreBadgeStyle = { display: 'inline-block', padding: '4px 8px', background: '#EFF6FF', color: '#3B82F6', borderRadius: '6px', fontSize: '11px', fontWeight: '600' };
 
 export default Home;

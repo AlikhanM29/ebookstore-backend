@@ -101,7 +101,7 @@ const Cart = () => {
     try {
       const response = await axios.post('https://ebookstore-backend-eubu.onrender.com/api/orders', orderData);
       if (response.status === 200 || response.status === 201) {
-        alert("Тапсырыс сәтті қабылданды! ✅");
+        alert("Тапсырыс сәтті қабылданды! ");
         localStorage.removeItem('cart');
         setCartItems([]);
         window.location.href = '/profile';
@@ -114,7 +114,7 @@ const Cart = () => {
 
   return (
     <div style={cartPageWrapper}>
-      <h2 style={{ marginBottom: '30px', color: '#0369A1' }}>Себет 🛒</h2>
+      <h2 style={{ marginBottom: '30px', color: '#0369A1' }}>Себет </h2>
       
       <div style={layout}>
         <div style={cardStyle}>
