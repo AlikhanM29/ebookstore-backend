@@ -93,7 +93,11 @@ const Home = () => {
 
         <main style={contentStyle}>
           {loading ? (
-            <div style={loadingContainer}><div className="spinner"></div></div>
+            /* ЖҮКТЕЛУДЕ ДЕГЕН ЖАЗУ МЕН АНИМАЦИЯ ОСЫ ЖЕРДЕ */
+            <div style={loadingContainer}>
+              <div className="spinner"></div>
+              <p style={loadingText}>Жүктелуде...</p>
+            </div>
           ) : (
             <div style={bookGrid}>
               {books.map((book) => (
@@ -104,7 +108,6 @@ const Home = () => {
                   </div>
                   <div style={infoWrapper}>
                     <h3 style={bookTitle}>{book.title}</h3>
-                    {/* КЕРЕКТІ АҚПАРАТТАР ҚОСЫЛДЫ */}
                     <p style={authorText}>{book.author} • {book.year}</p>
                     <div style={{ margin: '8px 0' }}>
                       <span style={genreBadgeStyle}>{book.genre}</span>
@@ -121,6 +124,7 @@ const Home = () => {
   );
 };
 
+// --- СТИЛЬДЕР ---
 const mainLayout = { display: 'flex', background: '#F8FAFC', minHeight: '100vh' };
 const sidebarStyle = { width: '320px', background: 'linear-gradient(180deg, #1E3A8A 0%, #1E40AF 100%)', padding: '40px 24px', position: 'sticky', top: 0, height: '100vh', color: 'white' };
 const sidebarTitleStyle = { fontSize: '24px', fontWeight: '800', marginBottom: '35px', letterSpacing: '-0.5px' };
@@ -149,17 +153,25 @@ const infoWrapper = { padding: '16px' };
 const bookTitle = { fontSize: '15px', fontWeight: 'bold', margin: '0 0 4px' };
 const authorText = { fontSize: '13px', color: '#64748B' };
 const btnDetail = { display: 'block', textAlign: 'center', marginTop: '12px', padding: '10px', background: '#F1F5F9', borderRadius: '8px', textDecoration: 'none', color: '#1E40AF', fontWeight: '600' };
-const loadingContainer = { display: 'flex', justifyContent: 'center', padding: '100px' };
 
-// ЖАНР БЕЛГІШЕСІНІҢ СТИЛІ
-const genreBadgeStyle = {
-  display: 'inline-block',
-  padding: '4px 8px',
-  background: '#EFF6FF',
-  color: '#3B82F6',
-  borderRadius: '6px',
-  fontSize: '11px',
-  fontWeight: '600'
+// ЖҮКТЕЛУ КОНТЕЙНЕРІНЕ FLEX-DIRECTION ҚОСЫЛДЫ
+const loadingContainer = { 
+  display: 'flex', 
+  flexDirection: 'column', 
+  alignItems: 'center', 
+  justifyContent: 'center', 
+  padding: '100px',
+  gap: '20px' 
 };
+
+// ЖҮКТЕЛУ МӘТІНІНІҢ СТИЛІ
+const loadingText = {
+  fontSize: '18px',
+  fontWeight: '600',
+  color: '#2563EB',
+  letterSpacing: '1px'
+};
+
+const genreBadgeStyle = { display: 'inline-block', padding: '4px 8px', background: '#EFF6FF', color: '#3B82F6', borderRadius: '6px', fontSize: '11px', fontWeight: '600' };
 
 export default Home;
