@@ -80,7 +80,7 @@ const Home = () => {
             <input 
               type="text" 
               style={searchInput}
-              placeholder="Іздеу..."
+              placeholder="Кітап атымен іздеу..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -100,7 +100,6 @@ const Home = () => {
           ) : (
             <div style={bookGrid}>
               {books.map((book) => {
-                // КІТАПТЫҢ БАР-ЖОҒЫН ТЕКСЕРУ (МЫСАЛЫ: stock бағаны 0 болса)
                 const isOutOfStock = book.stock === 0;
 
                 return (
@@ -108,27 +107,27 @@ const Home = () => {
                     key={book.id} 
                     style={{
                       ...bookCard, 
-                      border: isOutOfStock ? '2px solid #EF4444' : 'none', // Таусылса қызыл жиек
-                      opacity: isOutOfStock ? 0.8 : 1 // Сәл солғындату
+                      border: isOutOfStock ? '2px solid #EF4444' : 'none',
+                      opacity: isOutOfStock ? 0.8 : 1
                     }}
                   >
                     <div style={imageWrapper}>
                       <img src={book.image_url} alt={book.title} style={bookImage} />
                       <div style={{
                         ...priceTag, 
-                        background: isOutOfStock ? '#64748B' : '#2563EB' // Таусылса сұр түс
+                        background: isOutOfStock ? '#64748B' : '#2563EB'
                       }}>
                         {isOutOfStock ? 'Таусылды' : `${book.price} ₸`}
                       </div>
                     </div>
                     <div style={infoWrapper}>
+                      {/* КІТАП АТЫ ОСЫ ЖЕРДЕ КӨРІНЕДІ */}
                       <h3 style={bookTitle}>{book.title}</h3>
                       <p style={authorText}>{book.author} • {book.year}</p>
                       <div style={{ margin: '8px 0' }}>
                         <span style={genreBadgeStyle}>{book.genre}</span>
                       </div>
                       
-                      {/* БАТЫРМА ТАУСЫЛҒАНДА БАСЫЛМАЙТЫН БОЛАДЫ */}
                       {isOutOfStock ? (
                         <div style={{...btnDetail, background: '#E2E8F0', color: '#94A3B8', cursor: 'not-allowed'}}>
                           Қолжетімсіз
@@ -148,7 +147,7 @@ const Home = () => {
   );
 };
 
-// --- СТИЛЬДЕР (Өзгеріссіз қалды) ---
+// --- СТИЛЬДЕР ---
 const mainLayout = { display: 'flex', background: '#F8FAFC', minHeight: '100vh' };
 const sidebarStyle = { width: '320px', background: 'linear-gradient(180deg, #1E3A8A 0%, #1E40AF 100%)', padding: '40px 24px', position: 'sticky', top: 0, height: '100vh', color: 'white' };
 const sidebarTitleStyle = { fontSize: '24px', fontWeight: '800', marginBottom: '35px', letterSpacing: '-0.5px' };
@@ -169,12 +168,25 @@ const searchWrapper = { width: '100%', maxWidth: '600px', background: 'white', p
 const searchInput = { flex: 1, border: 'none', outline: 'none', fontSize: '16px' };
 const contentStyle = { padding: '0 40px 40px' };
 const bookGrid = { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '24px' };
-const bookCard = { background: 'white', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' };
+const bookCard = { background: 'white', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', transition: '0.3s' };
 const imageWrapper = { position: 'relative', height: '260px' };
 const bookImage = { width: '100%', height: '100%', objectFit: 'cover' };
 const priceTag = { position: 'absolute', bottom: '12px', right: '12px', background: '#2563EB', color: 'white', padding: '4px 10px', borderRadius: '8px', fontWeight: 'bold' };
 const infoWrapper = { padding: '16px' };
-const bookTitle = { fontSize: '15px', fontWeight: 'bold', margin: '0 0 4px' };
+
+// КІТАП АТЫНЫҢ СТИЛІН СӘЛ ЖАҚСАРТТЫҚ
+const bookTitle = { 
+  fontSize: '16px', 
+  fontWeight: '700', 
+  margin: '0 0 6px', 
+  color: '#1E293B',
+  display: '-webkit-box',
+  WebkitLineClamp: '2',
+  WebkitBoxOrient: 'vertical',
+  overflow: 'hidden',
+  height: '40px' // Аты ұзын болса да карточкалар бірдей тұруы үшін
+};
+
 const authorText = { fontSize: '13px', color: '#64748B' };
 const btnDetail = { display: 'block', textAlign: 'center', marginTop: '12px', padding: '10px', background: '#F1F5F9', borderRadius: '8px', textDecoration: 'none', color: '#1E40AF', fontWeight: '600' };
 
