@@ -1,8 +1,20 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+  // Қолданушының кіргенін тексеру (Token бар болса - кірген)
+  const isLoggedIn = !!localStorage.getItem('token');
+
+  // Шығу функциясы
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // Токенді өшіру
+    setIsOpen(false);
+    navigate('/login'); // Логин бетіне жіберу
+    window.location.reload(); // Бетті жаңарту (күйді өзгерту үшін)
+  };
 
   return (
     <nav style={navStyle}>
@@ -14,7 +26,24 @@ const Navbar = () => {
             <Link to="/home" onClick={() => setIsOpen(false)} style={dropItem}>Каталог</Link>
             <Link to="/profile" onClick={() => setIsOpen(false)} style={dropItem}>Профиль</Link>
             <Link to="/cart" onClick={() => setIsOpen(false)} style={dropItem}>Себет</Link>
-            <Link to="/login" onClick={() => setIsOpen(false)} style={{...dropItem, color: '#0EA5E9', fontWeight: 'bold'}}>Кіру</Link>
+            
+            {/* ШАРТТЫ ТҮРДЕ АУЫСУ: ЕГЕР КІРГЕН БОЛСА - ШЫҒУ, БОЛМАСА - КІРУ */}
+            {isLoggedIn ? (
+              <div 
+                onClick={handleLogout} 
+                style={{...dropItem, color: '#EF4444', fontWeight: 'bold', cursor: 'pointer'}}
+              >
+                Шығу
+              </div>
+            ) : (
+              <Link 
+                to="/login" 
+                onClick={() => setIsOpen(false)} 
+                style={{...dropItem, color: '#0EA5E9', fontWeight: 'bold'}}
+              >
+                Кіру
+              </Link>
+            )}
           </div>
         )}
       </div>
