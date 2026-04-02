@@ -115,6 +115,28 @@ app.delete('/api/books/:id', async (req, res) => {
     }
 });
 
+app.put('/api/user/update/:id', authenticateToken, async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { username } = req.body;
+
+        // Деректер қорындағы "name" бағанын жаңарту
+        const result = await pool.query(
+            "UPDATE users SET name = $1 WHERE id = $2 RETURNING id, name, email",
+            [username, id]
+        );
+
+        if (result.rowCount === 0) {
+            return res.status(404).json({ error: "Пайдаланушы табылмады" });
+        }
+
+        res.json(result.rows[0]);
+    } catch (err) {
+        console.error("Жаңарту қатесі:", err.message);
+        res.status(500).json({ error: "Деректерді жаңарту сәтсіз аяқталды" });
+    }
+});
+
 app.get('/api/books/:id', async (req, res) => {
     try {
         const { id } = req.params;

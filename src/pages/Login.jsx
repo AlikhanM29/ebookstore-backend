@@ -13,24 +13,19 @@ const Login = () => {
       const res = await axios.post('https://ebookstore-backend-eubu.onrender.com/api/login', { email, password });
       
       if (res.data) {
-        // Мәліметтерді localStorage-ке сақтаймыз
         localStorage.setItem('token', res.data.id); 
         localStorage.setItem('role', res.data.role);
-        localStorage.setItem('user', JSON.stringify(res.data)); // Толық объектіні сақтаған ыңғайлы
+        localStorage.setItem('user', JSON.stringify(res.data)); 
 
         alert('Қош келдіңіз!');
 
-        // РОЛЬГЕ БАЙЛАНЫСТЫ БАҒЫТТАУ
         if (res.data.role === 'ADMIN') {
-          // Егер ролі ADMIN болса, Админ панельге жібереміз
           navigate('/admin'); 
         } else {
-          // Егер жай пайдаланушы болса, Басты бетке жібереміз
           navigate('/home'); 
         }
       }
     } catch (err) {
-      // Қатені нақтырақ көрсету
       const errorMsg = err.response?.data?.error || 'Сервермен байланыс орнату мүмкін болмады';
       alert(errorMsg);
     }
